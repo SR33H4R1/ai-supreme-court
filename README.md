@@ -1,22 +1,48 @@
 # AI Supreme Court
 
-A small LangChain project that turns a topic into a short courtroom-style debate:
+AI Supreme Court is a small LLM project that turns any topic into a courtroom-style debate:
 
 - one AI argument for the topic
 - one AI argument against the topic
-- one judge-style verdict in structured output
+- one judge-style verdict with structured reasoning
 
-The original idea started as a notebook experiment in `AI_Supreme_Court.ipynb`. This repository adds a reusable Python entrypoint so the project is easier to run, share, and understand on GitHub.
+It started as a notebook experiment and was cleaned up into a simple Python project so it is easier to run, share, and explain on GitHub.
 
-## What this project shows
+## Why this project is interesting
 
-This is a beginner portfolio project focused on applied LLM engineering. It shows:
+This is a beginner portfolio project, but it already shows useful applied AI engineering skills:
 
-- prompt chaining with LangChain
+- prompt chaining instead of a single prompt
 - multi-step reasoning flow
-- structured output using a schema
-- local model usage with Ollama
-- moving from notebook prototype to a simple runnable project
+- structured output with a schema
+- local model usage through Ollama
+- moving from notebook prototype to reusable Python code
+
+## Quick demo
+
+Run:
+
+```bash
+python main.py --topic "Artificial intelligence in healthcare"
+```
+
+Typical output shape:
+
+```text
+Topic: Artificial intelligence in healthcare
+
+For:
+AI can improve diagnosis speed and help doctors process large amounts of medical data more accurately.
+
+Against:
+Heavy reliance on AI can reduce human judgment and create risks when systems are biased or wrong.
+
+Verdict:
+AI should be used in healthcare, but only with strong human oversight.
+
+Reasoning:
+The benefits are meaningful, but healthcare decisions still need accountability, empathy, and clinical judgment.
+```
 
 ## Tech stack
 
@@ -41,7 +67,7 @@ This is a beginner portfolio project focused on applied LLM engineering. It show
 ## Setup
 
 1. Create and activate a virtual environment.
-2. Install the dependencies:
+2. Install dependencies:
 
 ```bash
 pip install -r requirements.txt
@@ -55,15 +81,25 @@ ollama pull llama3.1
 
 ## Run
 
+Basic run:
+
 ```bash
 python main.py --topic "Artificial intelligence in healthcare"
 ```
 
-If you want machine-readable output:
+JSON output:
 
 ```bash
 python main.py --topic "AI in education" --json
 ```
+
+## What the code does
+
+1. Normalizes the topic input.
+2. Generates one brief argument for the topic.
+3. Generates one brief argument against the topic.
+4. Sends both sides to a judge chain.
+5. Returns a structured verdict and reasoning object.
 
 ## Example use cases
 
@@ -73,7 +109,7 @@ python main.py --topic "AI in education" --json
 
 ## Why this is on GitHub
 
-This is not a large production system. It is a clean learning project that demonstrates how to build a small LLM application with structure instead of a single prompt.
+This is not a large production system. It is a clean learning project that shows how to build a small LLM application with structure, reusable code, and a clearer developer experience than a notebook alone.
 
 ## Next improvements
 
